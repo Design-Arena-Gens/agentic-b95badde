@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>macOS WebOS</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="desktop">
+      <div id="desktop-wallpaper"></div>
+      <header id="menu-bar">
+        <div class="left">
+          <div class="apple-icon"></div>
+          <nav id="menu-items">
+            <span class="menu-item active" data-app="finder">Finder</span>
+            <span class="menu-item" data-app="notepad">Notes</span>
+            <span class="menu-item" data-app="calculator">Calculator</span>
+            <span class="menu-item" data-app="terminal">Terminal</span>
+            <span class="menu-item" data-app="utilities">Utilities</span>
+          </nav>
+        </div>
+        <div class="right">
+          <div id="menu-status"></div>
+          <div id="menu-time"></div>
+        </div>
+      </header>
+
+      <main id="desktop-area">
+        <ul id="desktop-icons">
+          <li data-app="finder">
+            <div class="icon finder-icon"></div>
+            <span>Finder</span>
+          </li>
+          <li data-app="notepad">
+            <div class="icon notepad-icon"></div>
+            <span>Notes</span>
+          </li>
+          <li data-app="calculator">
+            <div class="icon calculator-icon"></div>
+            <span>Calculator</span>
+          </li>
+          <li data-app="terminal">
+            <div class="icon terminal-icon"></div>
+            <span>Terminal</span>
+          </li>
+          <li data-app="utilities">
+            <div class="icon utilities-icon"></div>
+            <span>Utilities</span>
+          </li>
+        </ul>
+        <div id="window-layer"></div>
+      </main>
+
+      <footer id="dock">
+        <div class="dock-glass"></div>
+        <ul>
+          <li class="dock-item" data-app="finder">
+            <div class="icon finder-icon"></div>
+            <span>Finder</span>
+          </li>
+          <li class="dock-item" data-app="notepad">
+            <div class="icon notepad-icon"></div>
+            <span>Notes</span>
+          </li>
+          <li class="dock-item" data-app="calculator">
+            <div class="icon calculator-icon"></div>
+            <span>Calc</span>
+          </li>
+          <li class="dock-item" data-app="terminal">
+            <div class="icon terminal-icon"></div>
+            <span>Term</span>
+          </li>
+          <li class="dock-item" data-app="utilities">
+            <div class="icon utilities-icon"></div>
+            <span>Utils</span>
+          </li>
+        </ul>
+      </footer>
+    </div>
+
+    <template id="window-template">
+      <section class="window">
+        <header class="window-header">
+          <div class="traffic-lights">
+            <button class="light close" data-action="close"></button>
+            <button class="light minimize" data-action="minimize"></button>
+            <button class="light maximize" data-action="maximize"></button>
+          </div>
+          <div class="window-title"></div>
+        </header>
+        <div class="window-content"></div>
+      </section>
+    </template>
+
+    <template id="finder-template">
+      <div class="finder">
+        <aside class="finder-sidebar">
+          <h3>Favorites</h3>
+          <ul>
+            <li data-path="Documents">Documents</li>
+            <li data-path="Projects">Projects</li>
+            <li data-path="Downloads">Downloads</li>
+            <li data-path="System">System</li>
+          </ul>
+        </aside>
+        <section class="finder-main">
+          <header class="finder-toolbar">
+            <div class="toolbar-left">
+              <button data-action="back">◀</button>
+              <button data-action="forward">▶</button>
+              <button data-action="refresh">⟳</button>
+            </div>
+            <input type="search" placeholder="Search" />
+          </header>
+          <div class="finder-content"></div>
+        </section>
+      </div>
+    </template>
+
+    <template id="notepad-template">
+      <div class="notepad">
+        <aside class="notes-sidebar">
+          <header>
+            <h3>Notes</h3>
+            <button data-action="new-note">＋</button>
+          </header>
+          <ul class="notes-list"></ul>
+        </aside>
+        <section class="note-editor">
+          <header class="note-toolbar">
+            <input class="note-title" placeholder="Untitled" />
+            <div class="note-actions">
+              <button data-action="save-note">Save</button>
+              <button data-action="delete-note">Delete</button>
+            </div>
+          </header>
+          <textarea class="note-body" placeholder="Start typing..."></textarea>
+        </section>
+      </div>
+    </template>
+
+    <template id="calculator-template">
+      <div class="calculator">
+        <div class="calculator-display">0</div>
+        <div class="calculator-buttons">
+          <button data-role="function" data-value="clear">AC</button>
+          <button data-role="function" data-value="sign">±</button>
+          <button data-role="function" data-value="percent">%</button>
+          <button data-role="operator" data-value="/">÷</button>
+          <button data-role="digit" data-value="7">7</button>
+          <button data-role="digit" data-value="8">8</button>
+          <button data-role="digit" data-value="9">9</button>
+          <button data-role="operator" data-value="*">×</button>
+          <button data-role="digit" data-value="4">4</button>
+          <button data-role="digit" data-value="5">5</button>
+          <button data-role="digit" data-value="6">6</button>
+          <button data-role="operator" data-value="-">−</button>
+          <button data-role="digit" data-value="1">1</button>
+          <button data-role="digit" data-value="2">2</button>
+          <button data-role="digit" data-value="3">3</button>
+          <button data-role="operator" data-value="+">+</button>
+          <button class="zero" data-role="digit" data-value="0">0</button>
+          <button data-role="digit" data-value=".">.</button>
+          <button data-role="equals" data-value="=">=</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="terminal-template">
+      <div class="terminal">
+        <div class="terminal-output"></div>
+        <div class="terminal-input">
+          <span class="prompt">webos %</span>
+          <input type="text" autocomplete="off" />
+        </div>
+      </div>
+    </template>
+
+    <template id="utilities-template">
+      <div class="utilities">
+        <section class="utility-card system-info">
+          <h3>System Overview</h3>
+          <ul>
+            <li><strong>WebOS Version</strong><span>Sequoia 15.0</span></li>
+            <li><strong>Uptime</strong><span class="uptime-value">0m 0s</span></li>
+            <li><strong>Memory Usage</strong><span class="memory-value">0%</span></li>
+          </ul>
+        </section>
+        <section class="utility-card appearance">
+          <h3>Appearance</h3>
+          <div class="toggle">
+            <label>Dark Mode</label>
+            <input type="checkbox" data-pref="dark-mode" />
+          </div>
+          <div class="toggle">
+            <label>Reduce Motion</label>
+            <input type="checkbox" data-pref="reduce-motion" />
+          </div>
+        </section>
+        <section class="utility-card shortcuts">
+          <h3>Shortcuts</h3>
+          <ul>
+            <li><kbd>⌘</kbd> + <kbd>Space</kbd> — Focus menu search</li>
+            <li><kbd>⌘</kbd> + <kbd>N</kbd> — New note</li>
+            <li><kbd>⌘</kbd> + <kbd>`</kbd> — Cycle windows</li>
+          </ul>
+        </section>
+      </div>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
